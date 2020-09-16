@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column       | Type         | Options                        |
-| ------------ | ------------ | ------------------------------ |
-| item_name    | string       | null: false                    |
-| explanation  | text         | null: false                    |
-| image        | text         | null: false                    |
-| category     | integer      | null: false                    |
-| status       | integer      | null: false                    |
-| delivery_fee | integer      | null: false                    | 
-| delivery_from| integer      | null: false                    |
-| delivery_day | integer      | null: false                    |
-| user         | references   | null: false, foreign_key: true |
+| Column          | Type         | Options                        |
+| --------------- | ------------ | ------------------------------ |
+| item_name       | string       | null: false                    |
+| explanation     | text         | null: false                    |
+| category_id     | integer      | null: false                    |
+| status_id       | integer      | null: false                    |
+| delivery_fee_id | integer      | null: false                    | 
+| delivery_from_id| integer      | null: false                    |
+| delivery_day_id | integer      | null: false                    |
+| price           | integer      | null: false                    |
+| user            | references   | null: false, foreign_key: true |
 
 
 ### Association
@@ -57,7 +57,7 @@
 | Column          | Type         | Options                        |
 | --------------- | ------------ | ------------------------------ |
 | postal_code     | string       | null: false                    |
-| prefectures     | string       | null: false                    |
+| prefectures_id  | integer      | null: false                    |
 | municipalities  | string       | null: false                    | 
 | address         | string       | null: false                    |
 | building_name   | string       |                                |
