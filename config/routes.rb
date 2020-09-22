@@ -4,10 +4,9 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations'
     # :sessions => 'users/sessions'   
   }   
-  root to: "items#index"
 
-  #resources :users, only: [:new, :create]
-  resources :items, only: [:new, :create]
+  root to: "items#index"
+  resources :items, only: [:index, :new, :create]
 
 
 
