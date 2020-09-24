@@ -8,20 +8,15 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-
   with_options presence: true do
     validates :name
     validates :explanation
     validates :image
-    validates :category_id, numericality: { other_than: 0 } 
+    validates :category_id, numericality: { other_than: 0 }
     validates :status_id, numericality: { other_than: 0 }
     validates :delivery_fee_id, numericality: { other_than: 0 }
     validates :delivery_from_id, numericality: { other_than: 0 }
     validates :delivery_day_id, numericality: { other_than: 0 }
-    validates :price,format: { with: /\A[0-9]+\z/ }, numericality: {greater_than_or_equal_to: 300,less_than: 9999999}
-    
-    
-    
-
+    validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 }
   end
 end
