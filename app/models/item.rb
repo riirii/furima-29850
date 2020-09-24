@@ -19,7 +19,7 @@ class Item < ApplicationRecord
     validates :delivery_from_id, numericality: { other_than: 0 }
     validates :delivery_day_id, numericality: { other_than: 0 }
     validates :price,format: { with: /\A[0-9]+\z/ }, numericality: {greater_than_or_equal_to: 300,less_than: 9999999}
-    validates :user
+    
     
     
 
