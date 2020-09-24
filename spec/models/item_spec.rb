@@ -29,34 +29,34 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
     end
 
-    it 'category_idが空では登録できないこと' do
-      @item.category_id = nil
+    it 'category_idが0では登録できないこと' do
+      @item.category_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank", 'Category is not a number')
+      expect(@item.errors.full_messages).to include('Category must be other than 0')
     end
 
-    it 'status_idが空では登録できないこと' do
-      @item.status_id = nil
+    it 'status_idが0では登録できないこと' do
+      @item.status_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status can't be blank", 'Status is not a number')
+      expect(@item.errors.full_messages).to include('Status must be other than 0')
     end
 
-    it 'delivery_fee_idが空では登録できないこと' do
-      @item.delivery_fee_id = nil
+    it 'delivery_fee_idが0では登録できないこと' do
+      @item.delivery_fee_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery fee can't be blank", 'Delivery fee is not a number')
+      expect(@item.errors.full_messages).to include('Delivery fee must be other than 0')
     end
 
-    it 'delivery_from_idが空では登録できないこと' do
-      @item.delivery_from_id = nil
+    it 'delivery_from_idが0では登録できないこと' do
+      @item.delivery_from_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery from can't be blank", 'Delivery from is not a number')
+      expect(@item.errors.full_messages).to include('Delivery from must be other than 0')
     end
 
-    it 'delivery_day_idが空では登録できないこと' do
-      @item.delivery_day_id = nil
+    it 'delivery_day_idが0では登録できないこと' do
+      @item.delivery_day_id = 0
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery day can't be blank", 'Delivery day is not a number')
+      expect(@item.errors.full_messages).to include('Delivery day must be other than 0')
     end
 
     it 'priceが空では登録できないこと' do
@@ -66,9 +66,15 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceの範囲が¥300~¥9,999,999以外では登録できないこと' do
-      @item.price = '1'
+      @item.price = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
+    end
+
+    it 'priceの範囲が¥300~¥9,999,999以外では登録できないこと' do
+      @item.price = 100_000_000
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Price must be less than 9999999')
     end
 
     it 'priceが半角数字以外では登録できないこと' do
