@@ -13,11 +13,11 @@ class Item < ApplicationRecord
     validates :explanation
     validates :image
     with_options numericality: { other_than: 0 } do
-      validates :category_id, numericality: { other_than: 0 }
-      validates :status_id, numericality: { other_than: 0 }
-      validates :delivery_fee_id, numericality: { other_than: 0 }
-      validates :delivery_from_id, numericality: { other_than: 0 }
-      validates :delivery_day_id, numericality: { other_than: 0 }
+      validates :category_id
+      validates :status_id
+      validates :delivery_fee_id
+      validates :delivery_from_id
+      validates :delivery_day_id
     end
     validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 }
   end
