@@ -132,7 +132,7 @@
         <% unless @items.length == 0 %>
           <%# @itemの中が空ではない場合は %>
           <li class='list'>
-            <%= link_to "#" do %>
+            <%= link_to item_path(item.id), method: :get do %>
               <div class='item-img-content'>
                 <% if item.image.attached? %>
                   <%= image_tag item.image, class: "item-img" %>
@@ -192,7 +192,9 @@
   <%# /商品一覧 %>
 </div>
 <div class='purchase-btn'>
-    <span class='purchase-btn-text'><%= link_to '出品する', new_item_path %></span>
+    <span class='purchase-btn-text'>出品する</span>
+    <%= link_to new_item_path do %>
       <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+    <% end %>
 </div>
 <%= render "shared/footer" %>
