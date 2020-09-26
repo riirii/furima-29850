@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   } 
 
     
-    resources :items, only: [:new, :create, :show]
+    resources :items, only: [:new, :create, :show, :edit, :update]
   
 
 
