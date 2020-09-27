@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_from
   belongs_to_active_hash :delivery_day
   belongs_to :user
+  has_one    :card
   has_one_attached :image
 
   with_options presence: true do
