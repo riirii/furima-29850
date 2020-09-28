@@ -1,10 +1,11 @@
 class CardsController < ApplicationController
 
   def index
-    # @card = Card.new(card_params)
+    @card = Card.new
   end
 
   def create
+    # @card = Card.new()
   end
 
 
@@ -28,9 +29,9 @@ class CardsController < ApplicationController
 
   private
 
-  # def card_params
-  #   params.require(:card).permit(@item.id, @item.user_id)
-  # end
+  def item_params
+    params.require(:item).permit(item_id: @item.id, user_id: @item.user.id).merge(item_id: @item.id, user_id: @item.user.id)
+  end
 
 
 
