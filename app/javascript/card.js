@@ -1,19 +1,38 @@
 const pay = ()=> {
-  Payjp.setPublicKey("pk_test_aebdc06a3e4ea4e1c10c2819");// PAY.JPテスト公開鍵
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);// PAY.JPテスト公開鍵
+  const form = document.getElementById('charge-form');
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
+    const formResult = document.getElementById('charge-form');
+    const formData = new FormData(formResult);
+    const card = {
+      number: formData.get("card-number"),
+      cvc: formData.get("security_code"),
+      exp_month: formData.get("expiration-month"),
+      exp_year: `20${formData.get("expiration-year")}`,
+    };
+    
+    Payjp.createToken(card, (status, response) => {
+      if (status == 200) {
+        const token = response.id;
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
+      }
 
+      document.getElementById("number").removeAttribute("name");
+      document.getElementById("cvc").removeAttribute("name");
+      document.getElementById("exp_month").removeAttribute("name");
+      document.getElementById("exp_year").removeAttribute("name");
 
+      document.getElementById("charge-form").submit();
+      document.getElementById("charge-form").reset();
 
+    })
 
+  })
 
-
-
-
-
-
-
-
-  
 }
 
 window.addEventListener("load", pay);
