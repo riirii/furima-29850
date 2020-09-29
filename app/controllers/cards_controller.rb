@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
 
   def index
-    @card = Card.new
+    @card = Item.find(params[:item_id])
   end
 
   def create
@@ -17,28 +17,11 @@ class CardsController < ApplicationController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   private
 
-  # def item_params
-  #   params.require(:item).permit(item_id: @item.id, user_id: @item.user.id).merge(item_id: @item.id, user_id: @item.user.id)
-  # end
+  def item_params
+    params.require(:item).permit(:item_id)
+  end
 
   def card_params
     params.permit(:price, :token)
