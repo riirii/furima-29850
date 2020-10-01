@@ -6,8 +6,8 @@ class Card < ApplicationRecord
   
   
   
-  attr_accessor :token
-  validates :token, presence: true
+  # attr_accessor :token
+  # validates :token, presence: true
   
   
 end

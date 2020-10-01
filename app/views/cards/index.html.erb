@@ -7,15 +7,15 @@
     </h1>
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
-      <% if @card.image.attached? %>
-        <%= image_tag @card.image, class: 'buy-item-img' %>
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, class: 'buy-item-img' %>
       <% end %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= @card.explanation %>
+          <%= @item.explanation %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= @card.price %></p>
+          <p class='item-price-text'>¥<%= @item.price %></p>
           <p class='item-price-sub-text'>（税込）送料込み</p>
         </div>
       </div>
@@ -28,14 +28,13 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%= @card.price %>
+        ¥<%= @item.price %>
       </p>
     </div>
     <%# /支払額の表示 %>
-
-    <%= form_with model: @card, url: item_cards_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'shared/error_messages', model: @card %>
+    <%= form_with model:[@item,@card],url: item_cards_path(@item.id), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     
-      <%= render 'shared/error_messages', model: f.object %>
       
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
