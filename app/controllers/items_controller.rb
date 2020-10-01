@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  # before_action :move_to_index, only: [:]
+  before_action :authenticate_user!, only: [:new,:edit]
   before_action :item_record, only: [:show, :edit, :update]
   
 
@@ -58,9 +57,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to root_path
-    end
-  end
 end

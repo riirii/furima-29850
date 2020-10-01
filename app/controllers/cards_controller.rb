@@ -1,23 +1,29 @@
 class CardsController < ApplicationController
-  # before_action :authenticate_user!, only: [:new]
-
+  before_action :authenticate_user!, only: [:index]
 
 
   def index
     @item = Item.find(params[:item_id])
+    card = Card.distinct.pluck(:item_id)
+    if current_user.id == @item.user.id 
+      redirect_to root_path
+    end
+    if card.include?(@item.id)
+      redirect_to root_path
+    end
     @card = UserOrder.new
   end
+ 
 
   def create
     @item = Item.find(params[:item_id])
     @card = UserOrder.new(order_params)
     if @card.valid?
-      # pay_item
+      pay_item
       @card.save
       return redirect_to root_path
     else
       render :index
-      # redirect_to item_path(@item.id)
     end
   end
 
@@ -26,8 +32,8 @@ class CardsController < ApplicationController
   private
 
   def order_params
-    params.require(:user_order).permit(:postal_code, :prefecture_id, :municipality, :address, :tell_number ).merge(user_id: current_user.id,item_id: params[:item_id])
-    #:token
+    params.require(:user_order).permit(:postal_code, :prefecture_id, :municipality, :address, :tell_number, :token).merge(user_id: current_user.id,item_id: params[:item_id])
+    
   end
 
   # def pay_item
