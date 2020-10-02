@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :item_record, only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
+    @card = Card.distinct.pluck(:item_id)
   end
 
   def new
@@ -21,6 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @card = Card.distinct.pluck(:item_id)
   end
 
   def edit
