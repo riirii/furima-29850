@@ -2,7 +2,7 @@ class UserOrder
 
   include ActiveModel::Model
 
-  attr_accessor :postal_code, :prefecture_id, :municipality, :address, :tell_number ,:item_id ,:user_id
+  attr_accessor :postal_code, :prefecture_id, :municipality, :address, :tell_number , :item_id , :user_id, :token 
   # :token
 
   # with_options presence: true do
@@ -28,7 +28,7 @@ class UserOrder
   #   end
   #   validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than: 9_999_999 }
   # end
-  # validates :token, presence: true
+  validates :token, presence: true
 
   with_options presence: true do
     validates :postal_code
