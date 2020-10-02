@@ -12,7 +12,6 @@
       <% end %>
         <%# 商品が売れている場合は、sold outを表示しましょう %>
           <% if @card.include?(@item.id) %>
-          <%# <% else @item.card.id %>
             <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
@@ -36,11 +35,7 @@
       <% elsif user_signed_in? && current_user.id != @item.user.id %>
         <%# 商品が売れていない場合はこちらを表示しましょう %>
         <% unless @card.include?(@item.id) %>
-          <%# <% if @item.user.id == current_user.id %>
-            <%# <% redirect_to root_path %>
-          <%# <% else %> 
             <%= link_to '購入画面に進む', item_cards_path(@item.id), class:"item-red-btn"%>
-          <%# <% end %>
         <% end %>
         <%# //商品が売れていない場合はこちらを表示しましょう %>
       <% end %>
