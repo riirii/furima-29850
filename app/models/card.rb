@@ -4,10 +4,4 @@ class Card < ApplicationRecord
   has_one    :address, dependent: :destroy
   
   
-  
-  
-  # attr_accessor :token
-  # validates :token, presence: true
-  
-  
 end
