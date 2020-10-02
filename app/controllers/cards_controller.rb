@@ -4,8 +4,12 @@ class CardsController < ApplicationController
 
   def index
     card = Card.distinct.pluck(:item_id)
-    redirect_to root_path if current_user.id == @item.user.id
-    redirect_to root_path if card.include?(@item.id)
+    if current_user.id == @item.user.id 
+      redirect_to root_path and return
+    end
+    if card.include?(@item.id) 
+      redirect_to root_path and return
+    end 
     @card = UserOrder.new
   end
 
